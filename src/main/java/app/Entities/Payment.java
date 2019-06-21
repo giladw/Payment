@@ -1,5 +1,7 @@
 package app.Entities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Payment {
@@ -31,6 +33,15 @@ public class Payment {
 
     public String getDate() {
         return date;
+    }
+
+    public Date getDateAsDate() {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void setDate(String date) {

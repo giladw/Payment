@@ -2,7 +2,6 @@ package app.services;
 
 import app.Entities.Payable;
 import app.Entities.Payment;
-import app.repositories.CouponRepository;
 import app.repositories.PayableRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
@@ -13,35 +12,36 @@ import org.junit.Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class testReconciliationService{
+public class testReconciliationService {
 
-    @Test
-    public void ReconciliationService_testForDebugging() {
-        //Arrange
-
-//        HashMap<String, Payable> payableIdMap = new HashMap<>();
+    //        HashMap<String, Payable> payableIdMap = new HashMap<>();
 //        Payable payable = new Payable("UGF5YWJsZU5vZGU6YmMxMjJmZjctNTExNy00M2QxLWExNzQtYzE4MjViZWQyMzEz", 313, "AB1273","2018-02-28");
 //        payableIdMap.put("AB1273", payable);
-        //PayableRepository payableRepository = new PayableRepository(payableIdMap);
-
-        HashMap<String, Payable> payableIdMap =readJson();
+    //PayableRepository payableRepository = new PayableRepository(payableIdMap);
+    @Test
+    public void ReconciliationService_TestCase1_ReturnsTrue() {
+        //Arrange
+        HashMap<String, Payable> payableIdMap = readJson();
         PayableRepository payableRepository = new PayableRepository(payableIdMap);
         ReconciliationService service = new ReconciliationService(payableRepository);
         //Act
-        //: '2018-01-13'
-        Payment payment = new Payment("AB1273", 313, "2018-01-13");
+        Payment payment = getPayment("AB1273", 313, "2018-01-13");
         List<Payable> result = service.getPayables(payment);
-
         //Assert
         Assert.assertEquals(1, result.size());
     }
 
+    private Payment getPayment(String refId, int amount, String date) {
+        return new Payment(refId, amount, date);
+    }
 
-    private HashMap<String, Payable> readJson(){
+
+    private HashMap<String, Payable> readJson() {
         JSONParser parser = new JSONParser();
         JSONArray a = null;
         try {
@@ -55,15 +55,25 @@ public class testReconciliationService{
 
         HashMap<String, Payable> payableIdMap = new HashMap<>();
 
-        for (Object o : a)
-        {
+        for (Object o : a) {
             JSONObject payable = (JSONObject) o;
             String id = (String) payable.get("id");
-            Payable p = new Payable(id, (int) payable.get("amount"), (String) payable.get("referenceId"),(String) payable.get("dateOccurred"));
+            Payable p = new Payable(id, (int) payable.get("amount"), (String) payable.get("referenceId"), (String) payable.get("dateOccurred"));
             payableIdMap.put(id, p);
 
         }
         return payableIdMap;
     }
 
+    @Test
+    public void parseDate() {
+        String sDate1 = "2017-12-20";
+        Date date1 = null;
+        try {
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println(sDate1 + "\t" + date1);
+    }
 }
