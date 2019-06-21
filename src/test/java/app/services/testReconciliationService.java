@@ -27,7 +27,7 @@ public class testReconciliationService {
     @Test
     public void ReconciliationService_TestCase1_ReturnsTrue() {
         //Arrange
-        HashMap<String, Payable> payableIdMap = readJson();
+        HashMap<String, Payable> payableIdMap = readPayablesFile();
         PayableRepository payableRepository = new PayableRepository(payableIdMap);
         ReconciliationService service = new ReconciliationService(payableRepository);
         //Act
@@ -40,7 +40,7 @@ public class testReconciliationService {
     @Test
     public void ReconciliationService_TestCase2_ReturnsTrue() {
         //Arrange
-        HashMap<String, Payable> payableIdMap = readJson();
+        HashMap<String, Payable> payableIdMap = readPayablesFile();
         PayableRepository payableRepository = new PayableRepository(payableIdMap);
         ReconciliationService service = new ReconciliationService(payableRepository);
         //Act
@@ -53,7 +53,7 @@ public class testReconciliationService {
     @Test
     public void ReconciliationService_TestCase3_ReturnsTrue() {
         //Arrange
-        HashMap<String, Payable> payableIdMap = readJson();
+        HashMap<String, Payable> payableIdMap = readPayablesFile();
         PayableRepository payableRepository = new PayableRepository(payableIdMap);
         ReconciliationService service = new ReconciliationService(payableRepository);
         //Act
@@ -67,7 +67,7 @@ public class testReconciliationService {
     @Test
     public void ReconciliationService_TestCase4_ReturnsTrue() {
         //Arrange
-        HashMap<String, Payable> payableIdMap = readJson();
+        HashMap<String, Payable> payableIdMap = readPayablesFile();
         PayableRepository payableRepository = new PayableRepository(payableIdMap);
         ReconciliationService service = new ReconciliationService(payableRepository);
         //Act
@@ -80,7 +80,7 @@ public class testReconciliationService {
     @Test
     public void ReconciliationService_TestCase5_ReturnsTrue() {
         //Arrange
-        HashMap<String, Payable> payableIdMap = readJson();
+        HashMap<String, Payable> payableIdMap = readPayablesFile();
         PayableRepository payableRepository = new PayableRepository(payableIdMap);
         ReconciliationService service = new ReconciliationService(payableRepository);
         //Act
@@ -94,7 +94,7 @@ public class testReconciliationService {
     @Test
     public void ReconciliationService_TestCase6_ReturnsTrue() {
         //Arrange
-        HashMap<String, Payable> payableIdMap = readJson();
+        HashMap<String, Payable> payableIdMap = readPayablesFile();
         PayableRepository payableRepository = new PayableRepository(payableIdMap);
         ReconciliationService service = new ReconciliationService(payableRepository);
         //Act
@@ -112,7 +112,7 @@ public class testReconciliationService {
     }
 
 
-    private HashMap<String, Payable> readJson() {
+    private HashMap<String, Payable> readPayablesFile() {
         JSONParser parser = new JSONParser();
         JSONArray a = null;
         try {
