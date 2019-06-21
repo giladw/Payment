@@ -3,23 +3,24 @@ package app.Entities;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class Payment {
-    private String ref_id;
+    private List<String> ref_id;
     private int amount;
     private String date;
 
-    public Payment(String ref_id, int amount, String date) {
+    public Payment(List<String> ref_id, int amount, String date) {
         this.ref_id = ref_id;
         this.amount = amount;
         this.date = date;
     }
 
-    public String getRef_id() {
+    public List<String> getRef_id() {
         return ref_id;
     }
 
-    public void setRef_id(String ref_id) {
+    public void setRef_id(List<String> ref_id) {
         this.ref_id = ref_id;
     }
 

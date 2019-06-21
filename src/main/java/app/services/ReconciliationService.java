@@ -18,7 +18,8 @@ public class ReconciliationService {
 
     public List<Payable> getPayables(Payment payment){
         Collection<Payable> payables = payableRepository.GetAll();
-        List<Payable> payableSameRefId = payables.stream().filter(payable -> payable.getRef_id().equals(payment.getRef_id())).collect(Collectors.toList());
+//        List<Payable> payableSameRefId = payables.stream().filter(payable -> payable.getRef_id().equals(payment.getRef_id())).collect(Collectors.toList());
+        List<Payable> payableSameRefId = payables.stream().filter(payable -> payment.getRef_id().contains(payable.getRef_id())).collect(Collectors.toList());         
         List<Payable> payableSameRefIdNotOld = payableSameRefId.stream().filter(payable -> (payable.getDateAsDate().getTime() - payment.getDateAsDate().getTime()) > DAYS_THRESHOLD).collect(Collectors.toList());
 
         if (payableSameRefId.size() == 1)

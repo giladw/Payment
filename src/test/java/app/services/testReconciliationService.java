@@ -13,6 +13,7 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -77,7 +78,10 @@ public class testReconciliationService {
     }
 
     private Payment getPayment(String refId, int amount, String date) {
-        return new Payment(refId, amount, date);
+        String[] elements = refId.split(" ");
+        //String first = elements[0];
+        //String[] trailing = Arrays.copyOfRange(elements,0,elements.length);
+        return new Payment( Arrays.asList(elements), amount, date);
     }
 
 
