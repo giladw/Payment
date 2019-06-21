@@ -106,8 +106,6 @@ public class testReconciliationService {
 
     private Payment getPayment(String refId, int amount, String date) {
         String[] elements = refId.split(" ");
-        //String first = elements[0];
-        //String[] trailing = Arrays.copyOfRange(elements,0,elements.length);
         return new Payment( Arrays.asList(elements), amount, date);
     }
 
