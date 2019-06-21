@@ -21,6 +21,13 @@ public class ReconciliationService {
         List<Payable> payableSameRefId = payables.stream().filter(payable -> payable.getRef_id().equals(payment.getRef_id())).collect(Collectors.toList());
         List<Payable> payableSameRefIdNotOld = payableSameRefId.stream().filter(payable -> (payable.getDateAsDate().getTime() - payment.getDateAsDate().getTime()) > DAYS_THRESHOLD).collect(Collectors.toList());
 
-        return payableSameRefIdNotOld;
+        if (payableSameRefId.size() == 1)
+            return payableSameRefId;
+        if (payableSameRefIdNotOld.size() >= 1)
+            return payableSameRefIdNotOld;
+
+        List<Payable> paybelsSameAmount = payables.stream().filter(payable -> payable.getAmount() == payment.getAmount()).collect(Collectors.toList());
+
+        return paybelsSameAmount;
     }
 }
