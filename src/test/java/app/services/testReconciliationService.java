@@ -76,6 +76,33 @@ public class testReconciliationService {
         //Assert
         Assert.assertEquals(1, result.size());
     }
+    //{'amount': 255, 'payment_reference': '0115511414', 'payment_date': '2017-10-01'}
+    @Test
+    public void ReconciliationService_TestCase5_ReturnsTrue() {
+        //Arrange
+        HashMap<String, Payable> payableIdMap = readJson();
+        PayableRepository payableRepository = new PayableRepository(payableIdMap);
+        ReconciliationService service = new ReconciliationService(payableRepository);
+        //Act
+        Payment payment = getPayment("0115511414", 255, "2017-10-01");
+        List<Payable> result = service.getPayables(payment);
+        //Assert
+        Assert.assertEquals(1, result.size());
+    }
+
+    //{'amount': 254, 'payment_reference': 'AZMTO158', 'payment_date': '2017-06-19'}
+    @Test
+    public void ReconciliationService_TestCase6_ReturnsTrue() {
+        //Arrange
+        HashMap<String, Payable> payableIdMap = readJson();
+        PayableRepository payableRepository = new PayableRepository(payableIdMap);
+        ReconciliationService service = new ReconciliationService(payableRepository);
+        //Act
+        Payment payment = getPayment("AZMTO158", 254, "2017-06-19");
+        List<Payable> result = service.getPayables(payment);
+        //Assert
+        Assert.assertEquals(2, result.size());
+    }
 
     private Payment getPayment(String refId, int amount, String date) {
         String[] elements = refId.split(" ");
