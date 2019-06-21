@@ -5,9 +5,9 @@ import java.util.Date;
 public class Payment {
     private String ref_id;
     private int amount;
-    private Date date;
+    private String date;
 
-    public Payment(String ref_id, int amount, Date date) {
+    public Payment(String ref_id, int amount, String date) {
         this.ref_id = ref_id;
         this.amount = amount;
         this.date = date;
@@ -29,11 +29,11 @@ public class Payment {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

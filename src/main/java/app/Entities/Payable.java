@@ -6,7 +6,7 @@ public class Payable {
     private String Id;
     private int amount;
     private String ref_id;
-    private Date date;
+    private String date;
 
     public String getId() {
         return Id;
@@ -32,15 +32,15 @@ public class Payable {
         this.ref_id = ref_id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Payable(String id, int amount, String ref_id, Date date) {
+    public Payable(String id, int amount, String ref_id, String date) {
         Id = id;
         this.amount = amount;
         this.ref_id = ref_id;

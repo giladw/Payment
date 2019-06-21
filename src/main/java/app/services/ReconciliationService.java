@@ -18,9 +18,9 @@ public class ReconciliationService {
 
     public List<Payable> getPayables(Payment payment){
         Collection<Payable> payables = payableRepository.GetAll();
-        List<Payable> r = payables.stream().filter(payable -> payable.getRef_id() == payment.getRef_id()).collect(Collectors.toList());
+        List<Payable> reslut = payables.stream().filter(payable -> payable.getRef_id() == payment.getRef_id()).collect(Collectors.toList());
 
 
-        return null;
+        return reslut;
     }
 }
